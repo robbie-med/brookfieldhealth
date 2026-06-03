@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brookfield Health Commons</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a14;
+    --ink-soft: #3d3d32;
+    --ink-muted: #6b6b5a;
+    --paper: #f7f4ee;
+    --paper-warm: #ede9df;
+    --paper-dark: #ddd8cc;
+    --moss: #3d5a3e;
+    --moss-light: #527554;
+    --moss-pale: #e8efe8;
+    --birch: #8b7355;
+    --serif: 'Playfair Display', Georgia, serif;
+    --body: 'Source Serif 4', Georgia, serif;
+    --sans: 'Work Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 18px; line-height: 1.7; font-weight: 300; overflow-x: hidden; }
+
+  .hero { background: var(--ink); position: relative; overflow: hidden; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+  .hero-texture { position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(247,244,238,0.015) 2px, rgba(247,244,238,0.015) 4px); pointer-events: none; }
+  .hero-rule { position: absolute; top: 0; left: 0; right: 0; height: 5px; background: var(--moss); }
+  .hero-inner { max-width: 800px; margin: 0 auto; padding: 120px 48px 100px; position: relative; z-index: 1; }
+  .hero-eyebrow { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--moss-light); margin-bottom: 32px; display: flex; align-items: center; gap: 16px; }
+  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--moss-light); }
+  .hero h1 { font-family: var(--serif); font-size: clamp(42px, 6vw, 72px); font-weight: 400; line-height: 1.1; margin-bottom: 32px; color: var(--paper); }
+  .hero h1 em { font-style: italic; color: #c8b99a; }
+  .hero-sub { font-size: 20px; font-weight: 300; line-height: 1.6; color: #b8b3a8; max-width: 560px; margin-bottom: 56px; }
+  .hero-cta { display: inline-flex; align-items: center; gap: 12px; background: var(--moss); color: var(--paper); font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; padding: 16px 32px; transition: background 0.2s; }
+  .hero-cta:hover { background: var(--moss-light); }
+  .hero-cta::after { content: '→'; font-size: 16px; }
+
+  nav { position: sticky; top: 0; background: var(--ink); border-bottom: 1px solid rgba(247,244,238,0.1); z-index: 100; padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { font-family: var(--serif); font-size: 15px; color: var(--paper); text-decoration: none; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #888; text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--paper); }
+
+  section { padding: 100px 48px; max-width: 900px; margin: 0 auto; }
+  .section-label { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--moss); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+  .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--moss); }
+  h2 { font-family: var(--serif); font-size: clamp(28px, 4vw, 44px); font-weight: 400; line-height: 1.15; margin-bottom: 32px; letter-spacing: -0.01em; }
+  h2 em { font-style: italic; color: var(--birch); }
+  p { max-width: 640px; margin-bottom: 20px; color: var(--ink-soft); }
+  p:last-child { margin-bottom: 0; }
+  .divider { border: none; border-top: 1px solid var(--paper-dark); max-width: 900px; margin: 0 auto; }
+
+  .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1px; background: var(--paper-dark); margin-top: 48px; border: 1px solid var(--paper-dark); }
+  .offer-item { background: var(--paper); padding: 36px 32px; }
+  .offer-icon { width: 36px; height: 36px; background: var(--moss-pale); border-radius: 50%; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; color: var(--moss); font-size: 16px; }
+  .offer-item h3 { font-family: var(--serif); font-size: 18px; font-weight: 400; margin-bottom: 10px; color: var(--ink); }
+  .offer-item p { font-size: 15px; line-height: 1.6; color: var(--ink-muted); margin: 0; }
+
+  .principles-bg { background: var(--ink); padding: 100px 0; }
+  .principles-inner { max-width: 900px; margin: 0 auto; padding: 0 48px; }
+  .principles-inner .section-label { color: var(--moss-light); }
+  .principles-inner .section-label::before { background: var(--moss-light); }
+  .principles-inner h2 { color: var(--paper); }
+  .principle-list { margin-top: 56px; }
+  .principle { display: grid; grid-template-columns: 48px 1fr; gap: 32px; padding: 36px 0; border-top: 1px solid rgba(247,244,238,0.1); align-items: start; }
+  .principle:last-child { border-bottom: 1px solid rgba(247,244,238,0.1); }
+  .principle-num { font-family: var(--sans); font-size: 11px; font-weight: 300; color: var(--moss-light); padding-top: 6px; }
+  .principle-body h3 { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--paper); margin-bottom: 10px; }
+  .principle-body p { font-size: 16px; color: #888882; line-height: 1.65; max-width: 560px; }
+
+  .math-section { background: var(--paper-warm); padding: 100px 0; }
+  .math-inner { max-width: 900px; margin: 0 auto; padding: 0 48px; }
+  .math-inner h2 { color: var(--ink); }
+  .math-inner > p { color: var(--ink-soft); }
+
+  .budget-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 48px; align-items: start; }
+  .cost-table { border-top: 2px solid var(--ink); width: 100%; }
+  .cost-row { display: flex; justify-content: space-between; align-items: baseline; padding: 13px 0; border-bottom: 1px solid var(--paper-dark); gap: 16px; }
+  .cost-row .label { color: var(--ink-soft); font-size: 15px; }
+  .cost-row .amount { font-family: var(--sans); font-weight: 500; color: var(--ink); font-size: 14px; white-space: nowrap; }
+  .cost-row.total { border-bottom: 2px solid var(--ink); padding-top: 18px; }
+  .cost-row.total .label { font-family: var(--serif); font-weight: 600; color: var(--ink); font-size: 17px; }
+  .cost-row.total .amount { font-size: 18px; color: var(--moss); }
+  .cost-row .label-wrap { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .detail-btn {
+    font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
+    color: var(--moss); background: none; border: 1px solid var(--moss); border-radius: 2px;
+    padding: 1px 6px; cursor: pointer; text-transform: uppercase; white-space: nowrap;
+    transition: background 0.15s, color 0.15s; flex-shrink: 0;
+  }
+  .detail-btn:hover { background: var(--moss); color: var(--paper); }
+
+  .cost-footnote { font-size: 13px; color: var(--ink-muted); font-style: italic; margin-top: 16px; line-height: 1.6; }
+
+  .comparison-box { padding: 32px; background: var(--paper); border-left: 3px solid var(--moss); margin-bottom: 24px; }
+  .comparison-box p { font-size: 15px; color: var(--ink-muted); margin-bottom: 6px; max-width: 100%; }
+  .comparison-box strong { font-family: var(--serif); font-size: 26px; color: var(--moss); font-weight: 600; display: block; margin: 6px 0 14px; }
+
+  .governance-section { background: var(--paper); padding: 100px 0; }
+  .governance-inner { max-width: 900px; margin: 0 auto; padding: 0 48px; }
+  .gov-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 48px; }
+  .gov-card { padding: 28px 28px 24px; background: var(--paper-warm); border-top: 3px solid var(--moss); }
+  .gov-card h3 { font-family: var(--serif); font-size: 18px; font-weight: 400; color: var(--ink); margin-bottom: 12px; }
+  .gov-card p { font-size: 14px; color: var(--ink-muted); line-height: 1.6; margin-bottom: 12px; max-width: 100%; }
+  .gov-card p:last-child { margin-bottom: 0; }
+  .gov-card .detail-btn { margin-top: 4px; }
+
+  .timeline-section { background: var(--ink); padding: 100px 0; }
+  .timeline-inner { max-width: 900px; margin: 0 auto; padding: 0 48px; }
+  .timeline-inner .section-label { color: var(--moss-light); }
+  .timeline-inner .section-label::before { background: var(--moss-light); }
+  .timeline-inner h2 { color: var(--paper); }
+  .timeline-inner > p { color: #888882; }
+  .timeline { margin-top: 56px; position: relative; }
+  .timeline::before { content: ''; position: absolute; left: 84px; top: 8px; bottom: 8px; width: 1px; background: rgba(247,244,238,0.15); }
+  .horizon { display: grid; grid-template-columns: 96px 1fr; gap: 32px; padding: 24px 0; align-items: start; position: relative; }
+  .horizon-year { font-family: var(--serif); font-size: 22px; color: var(--moss-light); font-weight: 400; text-align: right; padding-top: 2px; }
+  .horizon-year::after { content: ''; position: absolute; left: 80px; top: 14px; width: 9px; height: 9px; border-radius: 50%; background: var(--moss-light); }
+  .horizon-body h4 { font-family: var(--serif); font-size: 16px; color: var(--paper); margin-bottom: 8px; font-weight: 400; }
+  .horizon-body p { font-size: 14px; color: #888882; line-height: 1.65; margin: 0; max-width: 520px; }
+
+  .rights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; }
+  .right-card { padding: 32px; background: var(--paper-warm); border-top: 3px solid var(--paper-dark); }
+  .right-card.affirm { border-top-color: var(--moss); }
+  .right-card.deny { border-top-color: var(--birch); }
+  .right-card h3 { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 20px; }
+  .right-card.affirm h3 { color: var(--moss); }
+  .right-card.deny h3 { color: var(--birch); }
+  .right-card ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .right-card li { font-size: 15px; color: var(--ink-soft); line-height: 1.5; padding-left: 20px; position: relative; }
+  .right-card.affirm li::before { content: '✓'; position: absolute; left: 0; color: var(--moss); font-size: 13px; top: 1px; }
+  .right-card.deny li::before { content: '✕'; position: absolute; left: 0; color: var(--birch); font-size: 13px; top: 1px; }
+
+  .vote-section { background: var(--moss); padding: 100px 48px; text-align: center; }
+  .vote-section h2 { color: var(--paper); font-size: clamp(32px, 5vw, 56px); max-width: 700px; margin: 0 auto 24px; }
+  .vote-section h2 em { color: #c8d9a8; }
+  .vote-section > p { color: rgba(247,244,238,0.75); max-width: 520px; margin: 0 auto 48px; font-size: 17px; }
+  .vote-detail { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; margin-bottom: 48px; }
+  .vote-when { font-family: var(--serif); font-size: 28px; color: var(--paper); }
+  .vote-label { font-family: var(--sans); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(247,244,238,0.6); }
+  .vote-cta { display: inline-flex; align-items: center; gap: 12px; background: var(--paper); color: var(--moss); font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; padding: 16px 36px; transition: background 0.2s; }
+  .vote-cta:hover { background: var(--paper-warm); }
+
+  footer { background: var(--ink); padding: 48px; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .footer-brand { font-family: var(--serif); font-size: 16px; color: var(--paper); }
+  .footer-brand span { display: block; font-family: var(--sans); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #666; margin-top: 4px; }
+  footer p { font-family: var(--sans); font-size: 12px; color: #555; max-width: 400px; line-height: 1.5; margin: 0; }
+
+  .drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,20,0.5); z-index: 200; opacity: 0; transition: opacity 0.25s; }
+  .drawer-overlay.open { display: block; opacity: 1; }
+  .drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(560px, 100vw); background: var(--paper); z-index: 201; overflow-y: auto; transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.32,0,0.16,1); display: flex; flex-direction: column; }
+  .drawer.open { transform: translateX(0); }
+  .drawer-header { position: sticky; top: 0; background: var(--paper); border-bottom: 1px solid var(--paper-dark); padding: 24px 32px; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; z-index: 1; }
+  .drawer-header h3 { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--ink); line-height: 1.3; }
+  .drawer-header .amount-tag { font-family: var(--sans); font-size: 13px; color: var(--moss); font-weight: 500; margin-top: 4px; }
+  .drawer-close { background: none; border: none; cursor: pointer; color: var(--ink-muted); font-size: 22px; line-height: 1; padding: 4px; flex-shrink: 0; transition: color 0.15s; }
+  .drawer-close:hover { color: var(--ink); }
+  .drawer-body { padding: 32px; flex: 1; }
+  .drawer-body p { font-size: 16px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 16px; max-width: 100%; }
+  .drawer-body p:last-child { margin-bottom: 0; }
+  .drawer-body h4 { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--moss); margin: 28px 0 14px; }
+  .drawer-body h4.birch { color: var(--birch); }
+  .drawer-body ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px; }
+  .drawer-body li { font-size: 15px; color: var(--ink-soft); padding-left: 16px; position: relative; line-height: 1.5; }
+  .drawer-body li::before { content: '·'; position: absolute; left: 0; color: var(--moss); font-weight: 700; }
+  .drawer-body .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .drawer-body .note { font-size: 13px; color: var(--ink-muted); font-style: italic; border-left: 2px solid var(--paper-dark); padding-left: 14px; margin-top: 20px; line-height: 1.6; }
+
+  @media (max-width: 680px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hero-inner, section { padding-left: 24px; padding-right: 24px; }
+    .principles-inner, .math-inner, .timeline-inner, .governance-inner { padding: 0 24px; }
+    .rights-grid, .budget-grid { grid-template-columns: 1fr; }
+    .vote-section { padding: 80px 24px; }
+    footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
+    .drawer-body .two-col { grid-template-columns: 1fr; }
+    .timeline::before { left: 60px; }
+    .horizon { grid-template-columns: 72px 1fr; gap: 20px; }
+    .horizon-year::after { left: 56px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="drawer-overlay" id="overlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+  <div class="drawer-header">
+    <div>
+      <h3 id="drawer-title"></h3>
+      <div class="amount-tag" id="drawer-amount"></div>
+    </div>
+    <button class="drawer-close" onclick="closeDrawer()" aria-label="Close">&times;</button>
+  </div>
+  <div class="drawer-body" id="drawer-body"></div>
+</div>
+
+<nav>
+  <a href="#" class="nav-logo">Brookfield Health Commons</a>
+  <ul class="nav-links">
+    <li><a href="#what">What it is</a></li>
+    <li><a href="#principles">How it works</a></li>
+    <li><a href="#math">Budget</a></li>
+    <li><a href="#governance">Governance</a></li>
+    <li><a href="#future">Future</a></li>
+    <li><a href="#rights">Your rights</a></li>
+    <li><a href="#vote">Vote</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-rule"></div>
+  <div class="hero-texture"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Brookfield, Vermont &middot; Est. 1781</div>
+    <h1>Your doctor.<br><em>Your town.</em><br>Your call.</h1>
+    <p class="hero-sub">A proposal to bring a full-time physician and two nurses to Brookfield — owned by the town, accountable to the town, free at the door for residents.</p>
+    <a href="#what" class="hero-cta">Read the proposal</a>
+  </div>
+</div>
+
+<section id="what">
+  <div class="section-label">The proposal</div>
+  <h2>Medicine the way it was <em>meant to work</em></h2>
+  <p>A physician lives in Brookfield. His home is the clinic. Two nurses work alongside him. You come when you need care — for your annual checkup, a sick kid at 8 a.m., something that has been nagging for weeks. You get seen. You go home. No bill arrives.</p>
+  <p>You already paid — the same way you pay for the fire department, the road crew, the library that has been running since 1791. Not because every house will catch fire, but because having the capacity matters, and the cost of not having it is too high when you need it.</p>
+  <p>This is not a program handed down from Montpelier. This is Brookfield deciding what Brookfield is worth.</p>
+
+  <div class="offer-grid">
+    <div class="offer-item">
+      <div class="offer-icon">⊕</div>
+      <h3>Primary care</h3>
+      <p>Sick visits, annual checkups, managing ongoing conditions like diabetes or high blood pressure, stitches and minor procedures — on site, same week.</p>
+    </div>
+    <div class="offer-item">
+      <div class="offer-icon">◎</div>
+      <h3>X-ray and lab work</h3>
+      <p>Your doctor takes and reads your X-rays and EKGs in the building. Basic blood and urine tests done on site. Most answers before you leave.</p>
+    </div>
+    <div class="offer-item">
+      <div class="offer-icon">○</div>
+      <h3>Overnight observation</h3>
+      <p>Two beds for patients who need watching overnight but do not need a hospital 40 minutes away.</p>
+    </div>
+    <div class="offer-item">
+      <div class="offer-icon">◑</div>
+      <h3>Specialist referral</h3>
+      <p>When you need a cardiologist, an orthopedist, or a surgeon, your doctor makes the call and stays involved. You are not handed a phone number and left to figure it out.</p>
+    </div>
+    <div class="offer-item">
+      <div class="offer-icon">◐</div>
+      <h3>Preventive care</h3>
+      <p>Cancer screenings, blood pressure checks, cholesterol panels, vaccines if you want them. Catching things early costs far less than treating them late.</p>
+    </div>
+    <div class="offer-item">
+      <div class="offer-icon">◉</div>
+      <h3>No bill. Ever.</h3>
+      <p>No copay. No deductible. No prior authorization. No surprise bill six weeks later. Your levy covers it.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<div class="principles-bg" id="principles">
+  <div class="principles-inner">
+    <div class="section-label">How it works</div>
+    <h2>Built differently, <em>on purpose</em></h2>
+    <div class="principle-list">
+      <div class="principle">
+        <div class="principle-num">01</div>
+        <div class="principle-body">
+          <h3>The town owns it</h3>
+          <p>The clinic, the building, the equipment — owned by the Town of Brookfield. Not by the physician. Not by the selectboard. Not by any hospital system or corporation. Operational control cannot be transferred to any outside entity without a town referendum.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">02</div>
+        <div class="principle-body">
+          <h3>The doctor is paid a salary — nothing else</h3>
+          <p>Your doctor earns the same whether he sees you once this year or twelve times. He has no reason to order tests you do not need, refer unnecessarily, or rush you out the door. He gets paid to keep Brookfield healthy. That is the job.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">03</div>
+        <div class="principle-body">
+          <h3>An elected board sets the standards</h3>
+          <p>Five members elected at Town Meeting. Two-year terms. Two-term limit, then a term off. Holds the physician accountable to outcomes, not billing targets. If the board is not doing its job, you vote them out.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">04</div>
+        <div class="principle-body">
+          <h3>Your officials use it too</h3>
+          <p>Every elected official and selectboard member who lives in Brookfield gets their primary care here. No separate plan, no private option while in office. When the people making decisions about the clinic are also patients in it, their interests and yours are the same.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">05</div>
+        <div class="principle-body">
+          <h3>Upkeep done by Brookfielders</h3>
+          <p>Maintenance and repairs preferentially go to residents of five years or more. Any contract over $2,000 requires competitive bids. Board members with family or financial ties to a bidder recuse, recorded in the minutes. No vendor can dominate the spend without public review.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">06</div>
+        <div class="principle-body">
+          <h3>The books are open</h3>
+          <p>An annual public health report is presented at Town Meeting every year, alongside an independent audit. Spending line by line. Health outcomes for the town. No figure is reported on fewer than 11 people, so no resident is identifiable in the aggregate. If something looks off, you will see it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="math-section" id="math">
+  <div class="math-inner">
+    <div class="section-label">The budget</div>
+    <h2>What it costs, <em>plainly stated</em></h2>
+    <p>Every line of the annual operating budget is below. Click "What's this?" on any line for a plain-English explanation of what it pays for.</p>
+
+    <div class="budget-grid">
+      <div>
+        <div class="cost-table">
+          <div class="cost-row"><span class="label-wrap"><span class="label">Physician salary</span><button class="detail-btn" onclick="openDrawer('salary')">What's this?</button></span><span class="amount">$120,000</span></div>
+          <div class="cost-row"><span class="label-wrap"><span class="label">Two registered nurses</span><button class="detail-btn" onclick="openDrawer('nurses')">What's this?</button></span><span class="amount">$130,000</span></div>
+          <div class="cost-row"><span class="label-wrap"><span class="label">Staff benefits</span><button class="detail-btn" onclick="openDrawer('benefits')">What's this?</button></span><span class="amount">$30,000</span></div>
+          <div class="cost-row"><span class="label-wrap"><span class="label">Medical supplies</span><button class="detail-btn" onclick="openDrawer('supplies')">What's this?</button></span><span class="amount">$25,000</span></div>
+          <div class="cost-row"><span class="label-wrap"><span class="label">Lab testing supplies</span><button class="detail-btn" onclick="openDrawer('lab')">What's this?</button></span><span class="amount">$10,000</span></div>
+          <div class="cost-row"><span class="label-wrap"><span class="label">Specialist X-ray reads (overflow)</span><button class="detail-btn" onclick="openDrawer('xray')">What's this?</button></span><span class="amount">$5,000</span></div>
+          <div class="cost-row"><span class="label-wrap"><span class="label">Locum coverage</span><button class="detail-btn" onclick="openDrawer('locum')">What's this?</button></span><span class="amount">$10,000</span></div>
+          <div class="cost-row"><span class="label-wrap"><span class="label">Building and utilities</span><button class="detail-btn" onclick="openDrawer('building')">What's this?</button></span><span class="amount">$20,000</span></div>
+          <div class="cost-row"><span class="label-wrap"><span class="label">Records, admin, CLIA cert</span><button class="detail-btn" onclick="openDrawer('admin')">What's this?</button></span><span class="amount">$5,000</span></div>
+          <div class="cost-row"><span class="label-wrap"><span class="label">Continuing education, licensure</span><button class="detail-btn" onclick="openDrawer('education')">What's this?</button></span><span class="amount">$3,000</span></div>
+          <div class="cost-row"><span class="label-wrap"><span class="label">Equipment reserve</span><button class="detail-btn" onclick="openDrawer('reserve')">What's this?</button></span><span class="amount">$10,000</span></div>
+          <div class="cost-row total"><span class="label">Annual total</span><span class="amount">$368,000</span></div>
+        </div>
+        <p class="cost-footnote">Startup costs — X-ray machine, exam tables, lab equipment, building work — are a one-time expense of $80,000 to $200,000, funded through a town bond or rural infrastructure grant. Not in the annual levy.</p>
+      </div>
+
+      <div>
+        <div class="comparison-box">
+          <p>Divided across Brookfield's 692 households:</p>
+          <strong>$43 to $55 per household per month</strong>
+          <p>Vermont's average individual health insurance premium runs $500 to $700 per person per month. We are not replacing that — not yet. We are making your first line of care cost almost nothing, and putting it ten minutes away.</p>
+          <p>Medicare and Medicaid reimbursements for enrolled patients offset the levy over time. Voluntary supplemental contributions from residents who choose to give more reduce the levy further.</p>
+          <p style="margin-top:14px;">
+            <button class="detail-btn" onclick="openDrawer('household')">Why per household, not per person?</button>
+            <button class="detail-btn" onclick="openDrawer('hsa')" style="margin-left:6px;">Insurance and HSA rules</button>
+            <button class="detail-btn" onclick="openDrawer('supplemental')" style="margin-left:6px;">Voluntary contributions</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="governance-section" id="governance">
+  <div class="governance-inner">
+    <div class="section-label">Governance and protection</div>
+    <h2>The safeguards, <em>at three levels</em></h2>
+    <p>The commons is protected at three legal altitudes so no single capture event — a corrupt doctor, a patronage board, an outside operator, or a snowy-Tuesday budget revolt — can unwind it.</p>
+
+    <div class="gov-grid">
+      <div class="gov-card">
+        <h3>Charter level</h3>
+        <p>Hardest to change. Requires town vote and legislative approval. Protects the structural DNA.</p>
+        <p style="font-size:13px;">No private ownership. Salaried physician model. No third-party billing. Control transfer requires referendum. Original purpose statement.</p>
+        <button class="detail-btn" onclick="openDrawer('charter')">Read the charter protections</button>
+      </div>
+      <div class="gov-card">
+        <h3>Ordinance level</h3>
+        <p>Changeable by town vote at Town Meeting. Protects the operating rules.</p>
+        <p style="font-size:13px;">Levy floor and locked five-year term. Conflict-of-interest and bidding rules. Report privacy standard. Officials-enroll provision.</p>
+        <button class="detail-btn" onclick="openDrawer('ordinance')">Read the ordinance protections</button>
+      </div>
+      <div class="gov-card">
+        <h3>Contract level</h3>
+        <p>Board administers. Public reviews annually. Protects daily operations.</p>
+        <p style="font-size:13px;">Three-year physician term. External chart review at renewal. Locum coverage arrangement. Vendor list and audit.</p>
+        <button class="detail-btn" onclick="openDrawer('contract')">Read the contract protections</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline-section" id="future">
+  <div class="timeline-inner">
+    <div class="section-label">Time horizons</div>
+    <h2>What the commons looks like <em>over time</em></h2>
+    <p>The doctor does not live a hundred years. The town does. Each horizon names what must hold, and what protects it.</p>
+
+    <div class="timeline">
+      <div class="horizon">
+        <div class="horizon-year">5 yr</div>
+        <div class="horizon-body">
+          <h4>First locked term ends</h4>
+          <p>Levy floor expires; town re-authorizes. First major equipment item begins drawing against reserve. Annual audit baseline established. Physician contract has cycled once.</p>
+        </div>
+      </div>
+      <div class="horizon">
+        <div class="horizon-year">10 yr</div>
+        <div class="horizon-body">
+          <h4>Three physician cycles complete</h4>
+          <p>Board has fully turned over once under term limits. External review history available for renewal decisions. Original founders are not running the show.</p>
+        </div>
+      </div>
+      <div class="horizon">
+        <div class="horizon-year">25 yr</div>
+        <div class="horizon-body">
+          <h4>Mandatory charter re-ratification</h4>
+          <p>The town affirms or amends the original purpose statement by public vote. The covenant is not assumed — it is renewed. Drift is interrupted by deliberate choice.</p>
+        </div>
+      </div>
+      <div class="horizon">
+        <div class="horizon-year">50 yr</div>
+        <div class="horizon-body">
+          <h4>Facility replacement funded</h4>
+          <p>Sinking fund accumulated over the prior decades pays for full facility replacement. Standing affiliation with a Vermont residency program keeps the physician pipeline alive — Brookfield is a known training site, not a cold recruit each cycle.</p>
+        </div>
+      </div>
+      <div class="horizon">
+        <div class="horizon-year">100 yr</div>
+        <div class="horizon-body">
+          <h4>The covenant, preserved or retired</h4>
+          <p>Successive 25-year ratifications either preserve the commons or formally retire it. Either outcome is the town's deliberate choice, not drift. Brookfield's grandchildren own this decision.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="rights">
+  <div class="section-label">Your rights</div>
+  <h2>What this clinic <em>will</em> and <em>will not</em> do</h2>
+  <p>This is a community commons, not a government mandate. Your medical decisions are yours. Your records are protected by law. No one runs this clinic but Brookfield.</p>
+  <p>The clinic is for Brookfield residents. People from outside town are not seen for routine care — there are other clinics for that. The one exception is a genuine emergency. If someone collapses on a neighbor's property or gets hurt in town, we do not turn them away. We stabilize them and get them to the right place.</p>
+
+  <div class="rights-grid">
+    <div class="right-card affirm">
+      <h3>The clinic will</h3>
+      <ul>
+        <li>Treat every Brookfield resident regardless of insurance or ability to pay</li>
+        <li>Keep your records private under federal law — HIPAA applies the same as anywhere</li>
+        <li>Offer screenings and vaccines; never require them as a condition of care</li>
+        <li>Refer you to a specialist when that is what you need, and follow up</li>
+        <li>Open its books at every Town Meeting — spending, outcomes, every line</li>
+        <li>Provide emergency stabilization to anyone, regardless of where they live</li>
+        <li>Be governed by an elected board with term limits and conflict-of-interest rules</li>
+        <li>Suppress any figure in the public report derived from fewer than 11 people</li>
+      </ul>
+    </div>
+    <div class="right-card deny">
+      <h3>The clinic will not</h3>
+      <ul>
+        <li>See non-residents for routine or ongoing care</li>
+        <li>Share your records with any government agency without your written consent or a court order</li>
+        <li>Require any treatment, vaccine, or procedure as a condition of receiving care</li>
+        <li>Be owned, managed, or directed by the state or federal government</li>
+        <li>Allow the physician, board members, or any official to hold ownership in the clinic, equipment, or supplies</li>
+        <li>Be sold or operationally handed to a private operator without a town referendum</li>
+        <li>Follow an insurance company's treatment protocols</li>
+        <li>Give voluntary contributors preference in scheduling, care, or board influence</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<div class="vote-section" id="vote">
+  <h2>Brookfield decides.<br><em>At Town Meeting.</em></h2>
+  <p>We are asking for a vote to authorize the Brookfield Health Commons — the fund, the levy, and the first five years of operations — decided by the people who will use it.</p>
+  <div class="vote-detail">
+    <span class="vote-label">Town Meeting Day</span>
+    <span class="vote-when">March 2027</span>
+  </div>
+  <br><br>
+  <a href="mailto:info@brookfieldvt.org" class="vote-cta">Get involved</a>
+</div>
+
+<footer>
+  <div class="footer-brand">
+    Brookfield Health Commons
+    <span>Brookfielders for Brookfield</span>
+  </div>
+  <p>A proposal from residents of Brookfield, Vermont. No outside funding. No outside agenda. A town deciding what it is worth.</p>
+</footer>
+
+<script>
+const panels = {
+  salary: {
+    title: 'Physician salary',
+    amount: '$120,000 / year',
+    body: `<p>The physician lives in Brookfield and runs the clinic out of his home. $120,000 a year is a fair salary for a full-time primary care doctor in a rural area — lower than what he could earn working for a hospital system, but he also has no billing staff to manage, no malpractice insurance premiums to carry, and no commute.</p>
+<p>For comparison, the median salary for a primary care physician in Vermont is around $220,000. The difference reflects the stripped-down overhead of this model and the physician's choice to practice this way.</p>`
+  },
+  nurses: {
+    title: 'Two registered nurses',
+    amount: '$130,000 / year combined',
+    body: `<p>Two full-time registered nurses at roughly $65,000 each. RNs in Vermont average around $70,000 to $80,000 a year. These salaries are competitive for a rural area.</p>
+<p>The nurses handle triage, chronic disease monitoring, wound care, vaccine administration, blood draws, point-of-care lab testing, and patient follow-up. They do a significant amount of the day-to-day work so the physician can focus where he is most needed.</p>`
+  },
+  benefits: {
+    title: 'Staff benefits',
+    amount: '$30,000 / year',
+    body: `<p>Legally required and practical costs of employing the two nurses as town workers. Does not include health insurance — the nurses are patients of the clinic.</p>
+<h4>What is included</h4>
+<ul>
+<li>Social Security and Medicare taxes — the town pays 7.65% of each employee's wages by federal law</li>
+<li>Vermont unemployment insurance</li>
+<li>Workers' compensation coverage</li>
+<li>Vermont paid family and medical leave contributions</li>
+</ul>
+<p class="note">The physician is a contractor, not a town employee. He carries his own professional liability coverage, which is modest under this model.</p>`
+  },
+  supplies: {
+    title: 'Medical supplies and consumables',
+    amount: '$25,000 / year',
+    body: `<p>Physical items used in the exam room every day — things that get used once and replaced, or wear out over time.</p>
+<h4>What is on the shelf</h4>
+<ul class="two-col">
+<li>Bandages, gauze, wound dressings</li>
+<li>Suture kits and staples</li>
+<li>Sterile gloves, masks, gowns</li>
+<li>Syringes, needles, IV tubing</li>
+<li>Blood pressure cuffs, stethoscopes</li>
+<li>Otoscope tips</li>
+<li>Tongue depressors, speculums</li>
+<li>Alcohol swabs, antiseptic wipes</li>
+<li>Sterile drapes, procedure trays</li>
+<li>Splints and casting material</li>
+<li>Oxygen tubing and masks</li>
+<li>Pulse oximeters</li>
+<li>Thermometers, probe covers</li>
+<li>Sharps containers</li>
+<li>Biohazard bags</li>
+<li>Paper gowns, exam table paper</li>
+<li>Saline for wound and IV use</li>
+<li>Specimen cups, swabs</li>
+<li>Pregnancy test kits</li>
+<li>Rapid strep, flu, COVID kits</li>
+<li>Urine dipstick strips</li>
+<li>Glucose test strips</li>
+</ul>
+<h4>Basic medications kept on hand</h4>
+<ul>
+<li>Epinephrine — severe allergic reactions</li>
+<li>Aspirin — chest pain first response</li>
+<li>Nitroglycerin — chest pain</li>
+<li>Albuterol inhaler — asthma attacks</li>
+<li>Diphenhydramine (Benadryl) — allergic reactions</li>
+<li>Ibuprofen and acetaminophen — pain, fever</li>
+</ul>
+<h4>Emergency crash cart</h4>
+<ul>
+<li>AED machine and defibrillator pads</li>
+<li>Airway tubes, bag-valve mask</li>
+<li>IV access kits, resuscitation drugs</li>
+</ul>`
+  },
+  lab: {
+    title: 'Lab testing supplies',
+    amount: '$10,000 / year',
+    body: `<p>Reagents, cartridges, and consumables for tests your nurses can run in the clinic without sending anything to an outside lab.</p>
+<h4>Tests done on site</h4>
+<ul>
+<li>Fingerstick blood glucose — diabetes monitoring</li>
+<li>Hemoglobin A1c — three-month blood sugar average</li>
+<li>PT/INR — blood clotting level for patients on blood thinners</li>
+<li>Cholesterol and lipid panel</li>
+<li>Urine analysis</li>
+<li>Rapid strep — throat swab, 5 minutes</li>
+<li>Rapid flu — nasal swab, 15 minutes</li>
+<li>Rapid COVID — 15 minutes</li>
+<li>Rapid mono</li>
+<li>H. pylori antigen — stomach ulcer bacteria</li>
+</ul>
+<h4>Tests sent to a regional lab</h4>
+<ul>
+<li>Complete blood count (CBC)</li>
+<li>Comprehensive metabolic panel — kidney, liver, electrolytes</li>
+<li>Thyroid hormone (TSH)</li>
+<li>Blood cultures</li>
+</ul>
+<p class="note">Send-out tests go to a reference lab. The nurse draws the tube here, ships it, results come back in 24 to 48 hours. This line covers the tubes, labels, and shipping supplies.</p>`
+  },
+  xray: {
+    title: 'Specialist X-ray reads (overflow)',
+    amount: '$5,000 / year',
+    body: `<p>Your doctor takes and reads your X-rays himself. He is a licensed physician and fully qualified. A broken wrist, a chest X-ray for pneumonia, a spine film — he reads those and acts on them.</p>
+<p>This line covers the rare cases where he wants a second opinion from a radiologist — a specialist whose entire job is reading imaging. An unusual shadow on a lung film, a fracture that does not look quite right, or anything where an extra set of expert eyes is worth having.</p>
+<p>About $15 per image, sent digitally to the radiology department at a regional hospital. This covers roughly 300 such reads a year — less than one per working day, used only when your doctor decides he wants one.</p>
+<p class="note">Most X-rays never need a specialist read. This is a backstop, not a routine step.</p>`
+  },
+  locum: {
+    title: 'Locum coverage',
+    amount: '$10,000 / year',
+    body: `<p>A "locum" is a temporary fill-in physician hired when your doctor is away — vacation, illness, continuing education, or military service. Roughly $150 to $200 per hour, contracted through a regional partner.</p>
+<p>This line covers about two weeks of vacation plus sick days. Without it, the clinic would close whenever the doctor is unavailable. With it, the clinic stays open and a credentialed physician is always on duty.</p>
+<h4>The bigger reason</h4>
+<p>The locum arrangement is also a structural protection. It means the town is never hostage to one person leaving. If the founding physician retires or moves on, the regional partner already knows the clinic and can bridge the transition.</p>`
+  },
+  building: {
+    title: 'Building and utilities',
+    amount: '$20,000 / year',
+    body: `<p>The clinic is in the physician's home. This line covers the portion of household operating costs that belong to the clinic: heat, electricity, water, internet, phone, janitorial supplies, and regulated medical waste pickup.</p>
+<p>Major repairs and building work are handled separately. Maintenance is preferentially done by Brookfield residents of five years or more, paid at fair local rates. Contracts over $2,000 require competitive bids. Board members with family or financial ties to a bidder recuse and the recusal is recorded in the minutes. No single vendor can dominate the spend without public review.</p>`
+  },
+  admin: {
+    title: 'Records, communications, administration',
+    amount: '$5,000 / year',
+    body: `<p>Software and services to run the clinic's paperwork without a billing department.</p>
+<h4>What it pays for</h4>
+<ul>
+<li>Electronic medical records (EMR) software — open-source, not a commercial subscription, which keeps this cost low</li>
+<li>Secure messaging for lab results and follow-up</li>
+<li>Telephone and internet for the clinical space</li>
+<li>Postage and printing for referrals and the annual public health report</li>
+<li>CLIA laboratory certification — federal requirement, $180 every two years</li>
+</ul>
+<p class="note">No billing staff because there is no billing. That eliminates one of the largest administrative costs in conventional medicine.</p>`
+  },
+  education: {
+    title: 'Continuing education and licensure',
+    amount: '$3,000 / year',
+    body: `<p>Vermont requires physicians and nurses to complete continuing education to keep their licenses current. Medicine changes. This money keeps clinical staff up to date.</p>
+<h4>What it covers</h4>
+<ul>
+<li>Vermont medical and nursing license renewals</li>
+<li>DEA registration for prescribing controlled substances</li>
+<li>Required continuing medical education for the physician</li>
+<li>Required continuing education for the nurses</li>
+<li>CPR and Advanced Cardiac Life Support certification renewal</li>
+</ul>`
+  },
+  reserve: {
+    title: 'Equipment reserve and sinking fund',
+    amount: '$10,000 / year',
+    body: `<p>Medical equipment breaks. X-ray machines need calibration. Lab analyzers need servicing. An exam table wears out. This line sets aside money every year so that when something needs fixing or replacing, the clinic does not go back to Town Meeting for an emergency appropriation.</p>
+<p>Unspent money stays in the fund. Over decades it accumulates into a meaningful cushion that eventually funds full facility replacement — the 50-year horizon. The fund is ring-fenced by ordinance and cannot be swept for other town purposes.</p>
+<p class="note">Startup equipment is funded through the one-time bond or grant, not this line. This line is ongoing maintenance and eventual replacement.</p>`
+  },
+  household: {
+    title: 'Why per household, not per person?',
+    amount: '$43 to $55 / month per household',
+    body: `<p>Someone will ask at Town Meeting: "I live alone and pay the same as the family with ten kids. What gives?"</p>
+<p>It is a fair question. Here is the honest answer.</p>
+<p>You are not paying for their children's appointments. You are paying for the physician, the nurses, the building, and the equipment — the capacity that is there when <em>you</em> need it. Ten healthy kids mostly need a strep test twice a year. A single person managing diabetes, high blood pressure, or a bad hip will likely use more of the doctor's time in a year than all those children combined. The risk pool balances over time, often in favor of older residents with more complex needs.</p>
+<p>Per-person billing requires tracking every resident, updating records when people move in or out, auditing, and administering it. You have created a bureaucracy. The fire department does not charge per resident. The road crew does not charge per driver. A flat household levy is simple, transparent, and impossible to game.</p>
+<p>The couple with no children still pays school taxes. The man who never had a fire paid for the fire department for forty years. That is not unfairness — that is what it means to live in a town together.</p>
+<p class="note">The health board could adopt a two-tier structure — a base household rate plus a small per-person add-on above four residents — if Town Meeting decides that fits better.</p>`
+  },
+  hsa: {
+    title: 'Insurance and HSA rules',
+    amount: 'Federal law as of January 2026',
+    body: `<p>You are right to ask: if you keep your job-based insurance, are you paying the levy on top of your premium? The honest answer is yes — but federal law just changed in a way that takes a significant bite out of that math.</p>
+<h4>What the law now says</h4>
+<p>The One Big Beautiful Bill Act, effective January 1, 2026, did two things relevant here. First, it lets people on Bronze or Catastrophic ACA plans contribute to a Health Savings Account (HSA), which used to be reserved for High-Deductible Health Plans. Second — and this is the important part — it explicitly classifies Direct Primary Care fees, like the Brookfield levy, as qualified medical expenses under HSA rules, as long as they stay under $150/month for individuals or $300/month for families.</p>
+<p>The levy fits inside those caps.</p>
+<h4>What this means for a working Brookfielder</h4>
+<p>If your employer offers an HSA-eligible plan, or you can switch to one at open enrollment, you can pay the levy with pre-tax dollars. For a household in the 22% federal tax bracket, a $600/year levy paid through an HSA saves about $130 in taxes alone — nearly the cost of two months.</p>
+<p>If your employer offers a High-Deductible Health Plan as an option, the premium itself is typically $150 to $250 a month lower than a comprehensive plan. The levy plus an HDHP premium usually nets out lower than the comprehensive premium alone — and you get the HSA tax shelter on top.</p>
+<h4>The honest gap</h4>
+<p>None of this helps if your employer only offers one plan and it is not HSA-eligible. The board commits to working with major Brookfield employers — the school district, regional employers with Brookfield employees — to make the HDHP option available where it is not yet. We cannot force any insurer to lower premiums. We can make the case that employees with a local primary care doctor cost less to insure, which is true and increasingly recognized.</p>
+<p class="note">For people on Medicaid, the levy effectively duplicates coverage they already have — and Medicaid reimbursements for those patients flow back to the clinic, offsetting the levy for everyone. For people on Medicare, the same applies.</p>`
+  },
+  supplemental: {
+    title: 'Voluntary supplemental contributions',
+    amount: 'Reduces the levy for everyone',
+    body: `<p>Residents may contribute above the base household levy. Contributions reduce the next year's required levy proportionally for all households.</p>
+<h4>How it works</h4>
+<ul>
+<li>Commitments are made in writing before Town Meeting, for the coming fiscal year</li>
+<li>The board publishes total pledged before the levy vote</li>
+<li>Base levy is set equal to (operating budget minus pledged contributions) divided by households</li>
+<li>Contributions go to the same ring-fenced fund — no separate account, no earmarking</li>
+</ul>
+<h4>Tax treatment</h4>
+<p>Contributions to a Vermont municipality for a public purpose are deductible as charitable contributions under IRC §170(c)(1). The town clerk issues a written acknowledgment. The contributor receives nothing in return — they pay the same base levy as everyone else and get the same care.</p>
+<h4>Anti-capture rules</h4>
+<ul>
+<li>Contributors receive no preference in scheduling, care, or board influence. Written into ordinance.</li>
+<li>Contributors are not publicly named unless they request it. No donor walls. No naming rights.</li>
+<li>No single contribution may exceed 10% of the annual operating budget without public review. Prevents the commons from becoming financially dependent on any one household.</li>
+<li>Withdrawal of an annual pledge before the fiscal year ends does not retroactively raise that year's levy. The shortfall is covered by reserve until the next vote.</li>
+</ul>
+<p class="note">A wealthy Brookfielder who wants to lower the levy for their neighbors can. They cannot buy influence, preference, or recognition. The commons stays the commons.</p>`
+  },
+  charter: {
+    title: 'Charter-level protections',
+    amount: 'Hardest to change',
+    body: `<p>These provisions require both a town vote and Vermont legislative approval to change. They are the constitutional DNA of the commons. A future board cannot touch them.</p>
+<h4>What lives at the charter level</h4>
+<ul>
+<li>No private ownership of the clinic, equipment, supplies, or building. Owned by the Town of Brookfield.</li>
+<li>The salaried-physician model. No fee-for-service. No third-party billing of patients.</li>
+<li>Any transfer of operational control to an outside entity — hospital system, management company, private operator — requires a town referendum. This covers not just sale, but contracts that give an outside party authority over hiring, clinical protocols, billing, or the EMR.</li>
+<li>A written purpose statement: the commons exists to provide primary care to Brookfield residents free at the point of care, governed by Brookfield, owned by Brookfield. Any future amendment must publicly answer whether it serves that purpose.</li>
+<li>Mandatory 25-year re-ratification of the purpose statement by public vote. The covenant is not assumed by inheritance. Each generation chooses it.</li>
+</ul>`
+  },
+  ordinance: {
+    title: 'Ordinance-level protections',
+    amount: 'Town Meeting vote required to change',
+    body: `<p>These provisions are set in town ordinance and can be amended only by a vote of Town Meeting — not by the selectboard or the health board alone. They protect the operating rules.</p>
+<h4>What lives at the ordinance level</h4>
+<ul>
+<li>The levy floor: the operating budget cannot be cut below the level needed to fund the staffed clinic without a supermajority town vote on a 60-day warned article. Prevents a snowy-Tuesday vote from killing the commons.</li>
+<li>Five-year locked funding term at each authorization. The levy is committed for five years, not coin-flipped annually.</li>
+<li>Equipment sinking fund is ring-fenced. Cannot be swept for other town purposes.</li>
+<li>Conflict-of-interest rules. Competitive bids required above $2,000. Board members recuse from any contract involving family or financial ties; recusal recorded in minutes. Annual vendor cap.</li>
+<li>Public report privacy floor: no figure reported on fewer than 11 individuals. No geographic breakdown below town level. Sensitive conditions reported only at whole-town level.</li>
+<li>Officials enroll: elected officials and selectboard members residing in Brookfield receive primary care at the clinic. No private alternative while in office.</li>
+<li>Voluntary contributor rules: no preference, no recognition without request, 10% single-contribution cap before public review.</li>
+<li>Wind-down clause: if the town ever votes to end the commons, a 12-month orderly closure, debt retirement from reserve, asset disposition.</li>
+</ul>`
+  },
+  contract: {
+    title: 'Contract-level protections',
+    amount: 'Board administers, public reviews annually',
+    body: `<p>These provisions live in the physician's contract, the partnership agreements, and the board's policies. The board administers them. The annual audit and public report make them visible.</p>
+<h4>The physician's contract</h4>
+<ul>
+<li>Three-year term, salaried, no fee-for-service component.</li>
+<li>Renewal requires external chart review by the regional partner and a patient experience survey. Not automatic.</li>
+<li>No moonlighting conflict. Outside work disclosed and approved. No competing fee-for-service practice.</li>
+<li>Conscientious objection declared in writing at hire. May be narrowed during a term, never expanded. Warm referral obligation for any service the physician does not provide.</li>
+<li>Confidentiality covenant signed at hire. Explicitly addresses the small-town context — the duty is heightened, not lessened, by the fact that the doctor knows these people socially.</li>
+</ul>
+<h4>External arrangements</h4>
+<ul>
+<li>Locum coverage and standing "second physician of record" arrangement with a regional partner.</li>
+<li>External chart review at every contract renewal — someone outside the building audits the care.</li>
+<li>Annual independent financial audit, published before Town Meeting.</li>
+</ul>
+<h4>Why three levels</h4>
+<p>Different protections live at different legal altitudes so no single capture event can unwind the whole thing. A corrupt board cannot rewrite the charter. A captured Town Meeting cannot quietly hand the clinic to a private operator. A bad physician contract is term-limited and externally reviewed. The commons survives by being defended at multiple heights at once.</p>`
+  }
+};
+
+function openDrawer(key) {
+  const p = panels[key];
+  if (!p) return;
+  document.getElementById('drawer-title').textContent = p.title;
+  document.getElementById('drawer-amount').textContent = p.amount;
+  document.getElementById('drawer-body').innerHTML = p.body;
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDrawer() {
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+</script>
+</body>
+</html>
