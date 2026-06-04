@@ -157,19 +157,6 @@
   .horizon-year::after { content: ''; position: absolute; left: 80px; top: 14px; width: 9px; height: 9px; border-radius: 50%; background: var(--moss-light); }
   .horizon-body h4 { font-family: var(--serif); font-size: 16px; color: var(--paper); margin-bottom: 8px; font-weight: 400; }
   .horizon-body p { font-size: 14px; color: #888882; line-height: 1.65; margin: 0; max-width: 520px; }
-
-  /* OBJECTIONS */
-  .objections-section { background: var(--paper-warm); padding: 100px 0; }
-  .objections-inner { max-width: 900px; margin: 0 auto; padding: 0 48px; }
-  .objections-inner > p { color: var(--ink-soft); }
-  .obj-list { margin-top: 48px; display: flex; flex-direction: column; gap: 16px; }
-  .obj-item { background: var(--paper); border-left: 3px solid var(--birch); padding: 28px 32px; }
-  .obj-item h3 { font-family: var(--serif); font-size: 18px; font-weight: 400; color: var(--ink); margin-bottom: 10px; }
-  .obj-item .obj-meta { font-family: var(--sans); font-size: 10px; color: var(--birch); font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 14px; }
-  .obj-item p { font-size: 15px; color: var(--ink-soft); line-height: 1.65; margin-bottom: 10px; max-width: 100%; }
-  .obj-item p:last-child { margin-bottom: 0; }
-  .obj-item strong { font-family: var(--serif); color: var(--ink); font-weight: 600; }
-
   /* RIGHTS */
   .rights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; }
   .right-card { padding: 32px; background: var(--paper-warm); border-top: 3px solid var(--paper-dark); }
@@ -228,7 +215,7 @@
     nav { padding: 0 24px; gap: 12px; }
     .nav-links { display: none; }
     .hero-inner, section { padding-left: 24px; padding-right: 24px; }
-    .principles-inner, .math-inner, .timeline-inner, .governance-inner, .objections-inner, .spec-inner, .manifesto-inner { padding: 0 24px; }
+    .principles-inner, .math-inner, .timeline-inner, .governance-inner, .spec-inner, .manifesto-inner { padding: 0 24px; }
     .rights-grid, .budget-grid { grid-template-columns: 1fr; }
     .vote-section { padding: 80px 24px; }
     footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
@@ -264,7 +251,6 @@
     <li><a href="#math">Budget</a></li>
     <li><a href="#governance">Governance</a></li>
     <li><a href="#future">Future</a></li>
-    <li><a href="#objections">Objections</a></li>
     <li><a href="#vote">Vote</a></li>
   </ul>
 </nav>
@@ -278,8 +264,8 @@
     <p class="hero-sub">A municipal primary care commons. Owned by Brookfield. Salaried physician, two nurses, no billing, no insurance gatekeeping. Free at the door for residents.</p>
     <div class="hero-meta">
       <div class="hero-meta-item">Households served<strong>~692</strong></div>
-      <div class="hero-meta-item">Annual budget<strong>$391,000</strong></div>
-      <div class="hero-meta-item">Per household<strong>$47–55 / mo</strong></div>
+      <div class="hero-meta-item">Annual budget<strong>$381,000</strong></div>
+      <div class="hero-meta-item">Per household<strong>$46–54 / mo</strong></div>
       <div class="hero-meta-item">First vote<strong>March 2027</strong></div>
     </div>
     <a href="#manifesto" class="hero-cta">Read the framework</a>
@@ -304,7 +290,7 @@
 
     <p>What is left, when those things are removed, is the original act: a doctor and a patient, in a room, taking the time it actually takes. That is the covenant. The proposal exists to protect it.</p>
 
-    <p>What follows is the operational framework. It is detailed because the covenant deserves to be defended with detail. It is honest about its weak points because honesty at the start is cheaper than failure later. Read it. Bring objections. We have already engaged the most serious ones and you will find our answers below.</p>
+    <p>What follows is the operational framework. It is detailed because the covenant deserves to be defended with detail — every salary band, every supply line, every governance check is on the page. Read it. Bring questions to the next town meeting. A plan worth voting on is a plan worth scrutinizing.</p>
 
     <p style="text-align:right;font-style:italic;color:var(--moss);margin-top:32px;">— Brookfielders for Brookfield</p>
   </div>
@@ -326,6 +312,11 @@
       <div class="offer-icon">◎</div>
       <h3>X-ray and lab work</h3>
       <p>Digital X-ray, EKG, basic blood and urine tests done on site. Your doctor reads the films himself. Most answers before you leave.</p>
+    </div>
+    <div class="offer-item">
+      <div class="offer-icon">⌂</div>
+      <h3>House calls</h3>
+      <p>The physician and nurses make home visits for residents who cannot easily come in — the elderly, the post-surgical, the seriously ill. Country medicine the way it used to be done, on the schedule the patient needs.</p>
     </div>
     <div class="offer-item">
       <div class="offer-icon">○</div>
@@ -445,6 +436,34 @@
     </div>
 
     <div class="spec-block">
+      <h3>Home visits</h3>
+      <div class="spec-meta">Routine practice · Not an exception</div>
+      <div class="spec-body">
+        <p>The physician and nurses make house calls for residents who cannot easily come in: homebound elders, post-surgical patients, the seriously ill, parents of newborns. This is built into the schedule, not an extraordinary measure.</p>
+        <p>Half-day weekly blocks are reserved on the physician's calendar for home visits, with additional visits scheduled as clinically indicated. Nurses make independent visits for wound care, medication management, vitals checks, and chronic disease monitoring under the physician's standing orders.</p>
+        <p>This is one of the practices the salaried model makes possible. A fee-for-service physician cannot afford to spend ninety minutes driving to and from one patient. A salaried one is paid to take care of Brookfield, and home visits are part of that.</p>
+      </div>
+    </div>
+
+    <div class="spec-block">
+      <h3>Training partnership</h3>
+      <div class="spec-meta">Medical students · Family medicine residents · Rotating</div>
+      <div class="spec-body">
+        <p>The commons hosts trainees from two academic partners on a rotating basis through the year:</p>
+        <ul>
+          <li><strong>Medical students</strong> from the University of Vermont or Dartmouth — two-week clinical rotations focused on rural primary care</li>
+          <li><strong>Family medicine residents</strong> from the Gifford Hospital Family Medicine Residency in Randolph — two-week elective rotations, typically PGY-2 or PGY-3</li>
+        </ul>
+        <p>Trainees see patients under the physician's direct supervision. They are not independent providers and do not replace any staff role. They learn what rural community medicine actually looks like — house calls, continuity, the physician who knows the patient's brother-in-law.</p>
+        <h4 style="font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--moss);margin:24px 0 12px;">Housing and logistics</h4>
+        <p>The town leases a furnished room in the clinic building to the visiting medical student for the rotation period at a published rate (~$400 for two weeks). The resident from Gifford drives in from their nearby residence and does not require housing.</p>
+        <h4 style="font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--moss);margin:24px 0 12px;">Revenue to the commons</h4>
+        <p>Academic partners pay teaching honoraria to the supervising physician (paid into the commons fund, not to the doctor personally) and a clinical site stipend to the town. Combined, the training partnership generates an estimated <strong>$8,000 to $12,000 per year</strong> in offset revenue — appearing as a credit against the levy. Numbers are conservative; the line grows if both partnerships scale.</p>
+        <p class="note" style="font-size:13px;color:var(--ink-muted);font-style:italic;border-left:2px solid var(--paper-dark);padding-left:14px;margin-top:14px;">The deeper return is recruitment. A medical student or resident who has spent two good weeks in Brookfield is a candidate the next time the physician seat needs filling. The training partnership is also a pipeline.</p>
+      </div>
+    </div>
+
+    <div class="spec-block">
       <h3>Billing and reimbursement</h3>
       <div class="spec-meta">Patients pay nothing · Public payers reimburse the town</div>
       <div class="spec-body">
@@ -501,7 +520,8 @@
           <div class="cost-row"><span class="label-wrap"><span class="label">Continuing education, licensure</span><button class="detail-btn" onclick="openDrawer('education')">Detail</button></span><span class="amount">$3,000</span></div>
           <div class="cost-row"><span class="label-wrap"><span class="label">Peer review and audit</span><button class="detail-btn" onclick="openDrawer('peerreview')">Detail</button></span><span class="amount">$2,000</span></div>
           <div class="cost-row"><span class="label-wrap"><span class="label">Equipment reserve and sinking fund</span><button class="detail-btn" onclick="openDrawer('reserve')">Detail</button></span><span class="amount">$10,000</span></div>
-          <div class="cost-row total"><span class="label">Annual total</span><span class="amount">$391,000</span></div>
+          <div class="cost-row" style="background:rgba(61,90,62,0.04);"><span class="label-wrap"><span class="label" style="color:var(--moss);">Less: training partnership offset</span><button class="detail-btn" onclick="openDrawer('training')">Detail</button></span><span class="amount" style="color:var(--moss);">−$10,000</span></div>
+          <div class="cost-row total"><span class="label">Annual net total</span><span class="amount">$381,000</span></div>
         </div>
         <p class="cost-footnote">All figures are year-one operating costs. Medicare and Medicaid reimbursements and voluntary supplemental contributions reduce the net amount required from the levy.</p>
 
@@ -520,8 +540,8 @@
 
       <div>
         <div class="comparison-box">
-          <p>Annual operating cost divided across 692 households:</p>
-          <strong>$47 to $55 per household per month</strong>
+          <p>Annual net cost divided across 692 households:</p>
+          <strong>$46 to $54 per household per month</strong>
           <p>The range narrows once Medicare and Medicaid reimbursements and voluntary contributions are pledged at the start of each fiscal year. The final levy is set at Town Meeting after pledges close.</p>
           <p>Vermont's average individual health insurance premium runs $500 to $700 per person per month. The commons does not replace that. It guarantees your first line of care is free, available, and ten minutes away — and it does so by adding a levy that for most working residents can be paid with pre-tax HSA dollars.</p>
           <p style="margin-top:14px;">
@@ -609,88 +629,6 @@
           <h4>The covenant, preserved or retired</h4>
           <p>Successive 25-year ratifications either preserve the commons or formally retire it. Either outcome is the town's deliberate choice, not drift. Brookfield's grandchildren own this decision.</p>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ── OBJECTIONS ── -->
-<div class="objections-section" id="objections">
-  <div class="objections-inner">
-    <div class="section-label">Objections engaged</div>
-    <h2>What the critics got <em>right</em></h2>
-    <p>Townspeople have read this proposal and pushed back. Some of their points landed; we changed the plan. Some were partially right; we clarified. Some were lazy. Here is the running record.</p>
-
-    <div class="obj-list">
-      <div class="obj-item">
-        <div class="obj-meta">Objection · Accepted · Plan revised</div>
-        <h3>The original budget had no malpractice line</h3>
-        <p>That was a real error. Primary care physician malpractice insurance runs $8,000 to $15,000 a year in Vermont, more with procedures and observation work. The budget now carries a $12,000 line for commercial coverage.</p>
-        <p>This line drops to zero once the commons obtains FQHC designation (target year two), because Federal Tort Claims Act coverage applies to FQHC physicians for their clinical work. Pursuing FQHC status is therefore a real budget priority, not a nice-to-have.</p>
-      </div>
-
-      <div class="obj-item">
-        <div class="obj-meta">Objection · Accepted · Plan revised</div>
-        <h3>Overnight observation beds are a regulatory and liability bomb</h3>
-        <p>This was the sharpest critique and it landed. Operating inpatient beds with a single sleeping physician and no overnight nursing is a category of risk this clinic cannot absorb.</p>
-        <p>The plan now provides <strong>short-stay observation during clinic hours only</strong>. The two beds remain — used for IV hydration, post-procedure recovery, and watching a patient for several hours before deciding to transfer. Any patient still needing monitoring at the end of clinic hours is transferred to a hospital. There is no overnight inpatient operation.</p>
-      </div>
-
-      <div class="obj-item">
-        <div class="obj-meta">Objection · Accepted · Plan revised</div>
-        <h3>"$10,000 in locum coverage" was inadequate</h3>
-        <p>That was roughly two weeks. A physician needs more — vacation, illness, continuing medical education, Guard duty. The line is now $24,000, supporting four weeks per year of credentialed locum coverage through the regional partnership.</p>
-        <p>The same partnership commits to providing a credentialed physician within 14 days if the seat goes vacant — addressing the single-point-of-failure risk directly. Brookfield is not waiting 12 to 24 months for a new doctor.</p>
-      </div>
-
-      <div class="obj-item">
-        <div class="obj-meta">Objection · Accepted · Plan revised</div>
-        <h3>"No third-party billing" and "Medicare reimbursement" contradicted each other</h3>
-        <p>Correct. The clarification: patients never receive a bill. The clinic bills Medicare and Medicaid for enrolled beneficiaries — which is the town claiming money statutorily due to it for caring for its public-payer residents. A part-time contract biller handles this ($8,000/year line). Private insurers are never billed.</p>
-      </div>
-
-      <div class="obj-item">
-        <div class="obj-meta">Objection · Accepted · Plan revised</div>
-        <h3>The startup capital range was a shrug, not a plan</h3>
-        <p>A range of "$80,000 to $200,000" was not a budget. The plan now itemizes startup capital to <strong>$150,000 firm</strong>, with a 20% contingency built in. See the budget section for the line-by-line breakdown.</p>
-      </div>
-
-      <div class="obj-item">
-        <div class="obj-meta">Objection · Accepted · Plan revised</div>
-        <h3>"Officials must enroll" was too broad and coercive</h3>
-        <p>The provision is now narrower: officials enroll for <strong>primary care</strong>. Existing specialist and chronic-care relationships are preserved. A selectboard member managing cancer with a specialist in Burlington is not required to disrupt that care. The shared standing applies to routine primary care, where it matters most for accountability and where it costs participants least.</p>
-      </div>
-
-      <div class="obj-item">
-        <div class="obj-meta">Objection · Partially accepted · Clarified</div>
-        <h3>"The board cannot evaluate physician competence"</h3>
-        <p>Correct that a lay board cannot do peer review. The plan was never that they would. Clinical performance is evaluated by an outside physician through the regional partnership — a credentialed peer reviewer who reviews charts and reports back. The board reviews the <strong>peer review</strong>, not the charts. This is how hospital credentialing committees actually work.</p>
-        <p>The website previously said "external chart review" without explaining who performed it. That ambiguity is now closed.</p>
-      </div>
-
-      <div class="obj-item">
-        <div class="obj-meta">Objection · Partially accepted · Clarified</div>
-        <h3>"A doctor willing to work for $120k is suspicious"</h3>
-        <p>The salary band is now $120,000 to $180,000, set by the board within published criteria. The lower end is for a physician for whom the model itself — autonomy, no billing, salaried clarity, the relational practice — is part of the compensation. The upper end allows competitive recruitment if the model alone does not draw a qualified candidate. The point of the model is to find someone who would do this anyway, not to find the cheapest body.</p>
-      </div>
-
-      <div class="obj-item">
-        <div class="obj-meta">Objection · Partially accepted · Clarified</div>
-        <h3>"Insurance interaction is a legal knot"</h3>
-        <p>It is, and a website cannot settle individual benefits questions. The plan now commits to providing a written explanatory letter for any resident's benefits administrator on request, and to working with major Brookfield-area employers to ensure HSA-eligible HDHP options exist.</p>
-        <p>The board will not pretend the plan eliminates an individual's total healthcare cost. The argument is that <strong>primary care is moved out of the insurance system entirely</strong>, with measurable downstream savings over time as fewer ER visits and better chronic disease management reduce claims.</p>
-      </div>
-
-      <div class="obj-item">
-        <div class="obj-meta">Objection · Rejected</div>
-        <h3>"100-year planning is fiction"</h3>
-        <p>This misunderstands the structure. The 25-year re-ratification does not assume that Brookfield in 2052 can design healthcare for Brookfield in 2152. It commits each generation to <strong>deliberately choose or formally retire</strong> the covenant of local ownership and accountability. The specific operations adapt; the principles re-ratify. Without the re-ratification, the structure drifts into irrelevance and gets quietly captured. With it, every generation owns the decision.</p>
-      </div>
-
-      <div class="obj-item">
-        <div class="obj-meta">Objection · Rejected</div>
-        <h3>"The financial case only holds if you ignore that total costs are unchanged"</h3>
-        <p>The financial case is not "this saves you money on insurance." The financial case is: <strong>primary care, the most-used and most-cost-effective layer of medicine, is moved out of the insurance system entirely</strong>, paid for at-cost by the town, with no copay or deductible gating access. For most working residents, the levy is paid with pre-tax HSA dollars and is therefore a 20% to 25% smaller bite than its face value suggests. Over time, fewer ER visits and better chronic management reduce downstream insurance costs. We do not pretend this is a free lunch. We do claim the math works for most households and we will publish the data showing it.</p>
       </div>
     </div>
   </div>
@@ -957,6 +895,27 @@ const panels = {
     body: `<p>Medical equipment breaks. X-ray machines need calibration. Lab analyzers need servicing. An exam table wears out. This line sets aside money every year so that when something needs fixing or replacing, the clinic does not go back to Town Meeting for an emergency appropriation.</p>
 <p>Unspent money stays in the fund. Over decades it accumulates into a meaningful cushion that eventually funds full facility replacement — the 50-year horizon. The fund is ring-fenced by ordinance and cannot be swept for other town purposes.</p>
 <p class="note">Startup equipment is funded through the one-time bond or grant, not this line.</p>`
+  },
+  training: {
+    title: 'Training partnership offset',
+    amount: '−$10,000 / year (net credit to the levy)',
+    body: `<p>The commons hosts trainees from two academic partners on a rotating basis through the year. The arrangement brings in real revenue, which appears as a credit against the levy.</p>
+<h4>The trainees</h4>
+<ul>
+<li><strong>Medical students</strong> from the University of Vermont or Dartmouth — two-week clinical rotations focused on rural primary care</li>
+<li><strong>Family medicine residents</strong> from the Gifford Hospital Family Medicine Residency in Randolph — two-week elective rotations, typically PGY-2 or PGY-3</li>
+</ul>
+<p>Trainees see patients under the physician's direct supervision. They are not independent providers and do not replace any staff role.</p>
+<h4>The revenue</h4>
+<ul>
+<li><strong>Teaching honoraria</strong> from UVM, Dartmouth, and Gifford for clinical preceptorship — paid to the commons fund, not to the physician personally. Approximately $1,500 to $2,500 per rotation, depending on partner.</li>
+<li><strong>Clinical site stipends</strong> from each residency or medical school program for hosting trainees. Roughly $500 to $1,500 per rotation.</li>
+<li><strong>Student housing lease</strong> — a furnished room in the clinic building leased to the visiting medical student for the two-week rotation period at ~$400 per stay. The Gifford resident lives nearby and does not require housing.</li>
+</ul>
+<p>Combined across a year of rotations (typically 6 to 10 visiting trainees), the partnership generates an estimated <strong>$8,000 to $12,000 per year</strong> in offset revenue. The budget conservatively books $10,000.</p>
+<h4>The deeper return</h4>
+<p>Recruitment. A medical student or resident who has spent two good weeks in Brookfield is a candidate the next time the physician seat needs filling. The training partnership is also the physician pipeline — addressing the 50-year horizon directly.</p>
+<p class="note">All training fees and stipends flow into the commons fund. The physician's salary is unchanged by teaching activity. This prevents the salaried-model integrity from being eroded by side compensation.</p>`
   },
   household: {
     title: 'Why per household, not per person?',
